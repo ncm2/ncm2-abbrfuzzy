@@ -6,4 +6,7 @@ Config
 
 ```vim
 let g:ncm2#matcher = 'abbrfuzzy'
+
+" use a sorter that's more friendly for fuzzy match
+let g:ncm2#sorter = 'abbrfuzzy'
 ```
