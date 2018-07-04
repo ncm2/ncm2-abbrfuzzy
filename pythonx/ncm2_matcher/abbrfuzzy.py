@@ -1,5 +1,5 @@
 import re
-
+from ncm2_matcher.prefix import Matcher as PrefixMatcher
 
 def get_abbrev(s):
     res = []
@@ -55,7 +55,15 @@ def max_common_prefix(b, s):
 
 
 class Matcher:
+    def __init__(self):
+        self.prefix_matcher = PrefixMatcher();
+
     def match(self, b, m):
+        # a base=`:abc` cannot match word=`:abcdefg` in abbrfuzzy, check
+        # prefix match before going further
+        if self.prefix_matcher.match(b, m):
+            return True
+
         hl = fuzzy_match(b, m['word'])
         if hl is None:
             return False
