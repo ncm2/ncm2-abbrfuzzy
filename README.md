@@ -5,6 +5,8 @@ Abbreviation based fuzzy matcher for ncm2
 Config
 
 ```vim
+Plug 'ncm2-abbrfuzzy'
+
 let g:ncm2#matcher = 'abbrfuzzy'
 
 " use a sorter that's more friendly for fuzzy match
