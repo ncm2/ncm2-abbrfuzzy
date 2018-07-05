@@ -29,6 +29,8 @@ def fuzzy_match(b, s):
 def abbr_fuzzy_match(abbr, b, s, off):
     for i, p in enumerate(abbr):
         p = p - off
+        if p < 0:
+            continue
         mcp = max_common_prefix(b, s[p:])
         if len(mcp) == len(b):
             return [[off + p, off + p + len(mcp)]]
