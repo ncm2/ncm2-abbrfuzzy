@@ -11,11 +11,13 @@ def get_abbrev(s):
         c = s[i]
         if not c.isalpha():
             continue
+        elif c.isupper():
+            res.append(i)
+            continue
         elif not cp.isalpha():
             res.append(i)
             continue
-        elif cp.islower() and c.isupper():
-            res.append(i)
+        else:
             continue
     return res
 
