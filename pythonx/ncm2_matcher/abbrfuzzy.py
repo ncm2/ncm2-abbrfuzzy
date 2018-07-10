@@ -10,6 +10,8 @@ def get_abbrev(s):
         cp = s[i - 1]
         c = s[i]
         if not c.isalpha():
+            if c.isdecimal() and not cp.isdecimal():
+                res.append(i)
             continue
         elif c.isupper():
             res.append(i)
@@ -22,6 +24,8 @@ def get_abbrev(s):
     return res
 
 def fuzzy_match(b, s):
+    if len(b) == 0:
+        return []
     abbr = get_abbrev(s)
     b = b.lower()
     s = s.lower()
