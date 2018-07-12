@@ -40,14 +40,12 @@ def abbr_fuzzy_match(abbr, b, s, off):
         mcp = max_common_prefix(b, s[p:])
         if len(mcp) == len(b):
             return [[off + p, off + p + len(mcp)]]
-        if len(mcp) == 0:
-            continue
-        b2 = b[len(mcp):]
-        s2 = s[p + len(mcp):]
-        m = abbr_fuzzy_match(abbr[i+1:], b2, s2, off + p + len(mcp))
-        if m is None:
-            continue
-        return [[off + p, off + p + len(mcp)]] + m
+        for l in range(len(mcp), 0, -1):
+            b2 = b[l:]
+            s2 = s[p + l:]
+            m = abbr_fuzzy_match(abbr[i+1:], b2, s2, off + p + l)
+            if m:
+                return [[off + p, off + p + l]] + m
     return None
 
 
